@@ -1,0 +1,46 @@
+body {
+    background-color:	#38F2FE;
+}
+
+.box {
+    border: 1px solid gray;
+}
+
+.container {
+}
+
+#login-box {
+    width:20%;
+    text-align: center;
+    margin-top: 100px;
+}
+
+#main-logo {
+    width: 100%;
+    height: auto;
+    margin-bottom: 40px;
+}
+
+#signup-header {
+    background-color: #36454f;
+}
+
+#header-signup {
+    float: right;
+}
+
+.logo {
+    width: 6%;
+    height:auto;
+    margin: 5px;
+}
+
+.password-enter {
+    margin-left: -33%;
+}
+
+
+.col-centered{
+    margin: 0 auto;
+    float: none;
+}
