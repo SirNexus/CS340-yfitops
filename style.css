@@ -6,9 +6,6 @@ body {
     border: 1px solid gray;
 }
 
-.container {
-}
-
 #login-box {
     width:20%;
     text-align: center;
@@ -21,7 +18,7 @@ body {
     margin-bottom: 40px;
 }
 
-#signup-header {
+.header {
     background-color: #36454f;
 }
 
@@ -29,10 +26,14 @@ body {
     float: right;
 }
 
-.logo {
+.header-logo {
     width: 6%;
     height:auto;
     margin: 5px;
+}
+
+.header-logo:hover {
+    cursor: pointer;
 }
 
 .password-enter {
