@@ -89,6 +89,7 @@ mysqli_close($conn);
         </div>
 		</div>
 <input type = "submit" value = "Submit" />
+<h2> <?php echo $msg; ?> </h2>
 </form>
 </body>
 </html>

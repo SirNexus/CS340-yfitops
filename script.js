@@ -5,7 +5,7 @@ $(document).ready(function(){
     });
 
     $("#home-login").click(function(){
-        window.location.href = "./login.html";
+        window.location.href = "./login.php";
     });
 
     $(".header-logo").click(function(){
