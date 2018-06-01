@@ -1,6 +1,5 @@
 
 $(document).ready(function(){
-});
     $("#home-signup").click(function(){
         window.location.href = "./signup.php";
     });

@@ -2,10 +2,13 @@
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
+        <meta charset="UTF-8"> 
     </head>
     <body>
-        <div id="signup-header" class="box">
-            <img class="logo" src="yfitops_header.png">
+        <div class="header">
+            <img class="header-logo" src="yfitops_header.jpg">
             <button type="button" id="header-signup" class="m-4 btn btn-primary">Log in</button>
         </div>    
 
@@ -100,15 +103,8 @@ mysqli_close($conn);
               </form>
             </div>
         </div>
-<<<<<<< Updated upstream:signup.html
-        </div>
-    </body>
-</html>
-=======
-		</div>
 <input type = "submit" value = "Submit" />
 </form>
 
 </body>
 </html>
->>>>>>> Stashed changes:signup.php
