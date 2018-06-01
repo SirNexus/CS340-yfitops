@@ -36,10 +36,51 @@ body {
     cursor: pointer;
 }
 
+.left-header {
+    position: absolute;
+    margin-top: 9%;
+    width: 8%;
+}
+
+.header-btn {
+    width: 80%;
+}
+
+.header-text {
+    color: white;
+    display: inline-block;
+    font-size: 64px;
+    vertical-align: bottom;
+    padding-left: 12%;
+}
+
+.profile-text {
+    color: black;
+    font-size: 48px;
+    border-bottom: 1px solid rgb(20, 20, 20, .3);
+    border-radius: 15px;
+    max-width: 30%;
+}
+
 .password-enter {
     margin-left: -33%;
 }
 
+#artists-container {
+    margin-top:4%;
+    margin-left: 25%;
+    flex-wrap: wrap;
+    max-width: 60%;
+}
+
+.artist {
+    margin:auto;
+    border-radius: 50%;
+    background-color: white;
+    width:200px;
+    height:200px;
+    text-align: center;
+}
 
 .col-centered{
     margin: 0 auto;
