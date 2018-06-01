@@ -9,6 +9,46 @@
             <button type="button" id="header-signup" class="m-4 btn btn-primary">Log in</button>
         </div>    
 
+<?php
+//	include "header.php";
+//	$msg = "Add new supplier record to the Supplier Table";
+
+// change the value of $dbuser and $dbpass to your username and password
+	include 'connectvars.php'; 
+	
+	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	if (!$conn) {
+		die('Could not connect: ' . mysql_error());
+	}
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+// Escape user inputs for security
+		$username = mysqli_real_escape_string($conn, $_POST['username']);
+		$name = mysqli_real_escape_string($conn, $_POST['name']);
+		$password = mysqli_real_escape_string($conn, $_POST['password']);
+	    $email = mysqli_real_escape_string($conn, $_POST['email']);
+		// See if sid is already in the table
+		//
+		$queryIn = "SELECT * FROM Users where username='$username' ";
+		$resultIn = mysqli_query($conn, $queryIn);
+		if (mysqli_num_rows($resultIn)> 0) {
+			$msg ="<h2>Can't Add to Table</h2> There is already a user with username $username<p>";
+		} else {
+		
+		// attempt insert query 
+			$query = "INSERT INTO Users (username, name, email, password) VALUES ('$username', '$name', '$email', '$password')";
+			if(mysqli_query($conn, $query)){
+				$msg =  "Record added successfully.<p>";
+			} else{
+				echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
+			}
+		}
+}
+// close connection
+mysqli_close($conn);
+
+?>
+<form method = "post">
         <div id="signup-container" class="my-5 container">
             <div class="row">
             <div class="col-md-8">
@@ -54,12 +94,21 @@
                 <div class="form-group">
                   <label class="control-label col-sm-3">Full Name <span class="text-danger">*</span></label>
                   <div class="col-md-8 col-sm-9 col-centered">
-                    <input type="text" class="form-control" name="mem_name" id="mem_name" placeholder="Enter your Name here" value="">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name here" value="">
                   </div>
                 </div>
               </form>
             </div>
         </div>
+<<<<<<< Updated upstream:signup.html
         </div>
     </body>
 </html>
+=======
+		</div>
+<input type = "submit" value = "Submit" />
+</form>
+
+</body>
+</html>
+>>>>>>> Stashed changes:signup.php
