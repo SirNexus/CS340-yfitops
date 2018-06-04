@@ -9,7 +9,7 @@
     <body>
         <div class="header">
             <img class="header-logo" src="yfitops_header.jpg">
-            <button type="button" id="header-signup" class="m-4 btn btn-primary">Log in</button>
+            <button type="button" id="header-login" class="m-4 btn btn-primary header-nav">Log in</button>
         </div>    
 
 <?php
