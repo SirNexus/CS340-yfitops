@@ -44,3 +44,32 @@ $(document).ready(function(){
         window.location.href = "./index.html";
     });
 });
+
+function insertSong(title, artist, album, genre) {
+    var lastSong = $('#songs-container').children().last();
+
+    var node = document.createElement('div');
+    node.classList.add('song')
+
+    var attribute = document.createElement('div');
+    attribute.classList.add("song-title");
+    attribute.innerHTML = title;
+    node.appendChild(attribute);
+
+    attribute = document.createElement('div');
+    attribute.classList.add("song-artist");
+    attribute.innerHTML = artist;
+    node.appendChild(attribute);
+
+    attribute = document.createElement('div');
+    attribute.classList.add("song-album");
+    attribute.innerHTML = album;
+    node.appendChild(attribute);
+
+    attribute = document.createElement('div');
+    attribute.classList.add("song-artist");
+    attribute.innerHTML = artist;
+    node.appendChild(attribute);
+
+    lastSong.append(node);
+}
