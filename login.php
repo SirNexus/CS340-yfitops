@@ -28,7 +28,7 @@
 		//	$final = mysqli_query($conn , $saltSql);
 			
 		//	if($finalrow = mysqli_fetch_assoc($final)){
-				return true;
+			return true;
 			}
 	//	}
 			return false;
@@ -48,12 +48,13 @@
 		
 
 		if (login($username, $password)) {
-		
-            header("location:profile.html");
+        
+            session_start();
             $msg ="<h2>You have logged in</h2>";
-            echo "<script type=\"text/javascript\">document.location.href=\"profile.html\";</script>";
+            $_SESSION["curUser"] = $username;
+            echo "<script type=\"text/javascript\">document.location.href=\"profile.php\";</script>";
 		}else{	
-			$msg ="<h2>Wrong username or passwaord</h2>";
+			$msg ="<h2>Wrong username or password</h2>";
 		}
 		//	echo "$passIn and $saltIn";
 		// attempt insert query 

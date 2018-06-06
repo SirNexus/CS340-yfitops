@@ -1,3 +1,9 @@
+<?php
+session_start();
+echo "Session username is:" . $_SESSION['curUser'];
+
+?>
+
 <html>
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
@@ -22,28 +28,17 @@
         </div>
 
         <div class="my-3 container profile-text text-center">
-            Your Songs
+            Artists
         </div>
 
-        <div id="songs-container" class="d-flex container main-container box">
-            <div class="song">
-                <div class="song-title">Test title</div>
-                <div class="song-artist">Test artist</div>
-                <div class="song-album">Test album</div>
-                <div class="song-genre">Test genre</div>
-            </div>
-            <div class="song">
-                <div class="song-title">Test title</div>
-                <div class="song-artist">Test artist</div>
-                <div class="song-album">Test album</div>
-                <div class="song-genre">Test genre</div>
-            </div>
-            <div class="song">
-                <div class="song-title">Test title</div>
-                <div class="song-artist">Test artist</div>
-                <div class="song-album">Test album</div>
-                <div class="song-genre">Test genre</div>
-            </div>
+        <div id="artists-container" class="d-flex container main-container">
+            <div class="m-4 artist box">Text box</div>
+            <div class="m-4 artist box">Text box</div>
+            <div class="m-4 artist box">Text box</div>
+            <div class="m-4 artist box">Text box</div>
+            <div class="m-4 artist box">Text box</div>
+            <div class="m-4 artist box">Text box</div>
+            <div class="m-4 artist box">Text box</div>
         </div>
     </body>
 </html>
