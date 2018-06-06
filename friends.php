@@ -1,3 +1,13 @@
+<?php
+session_start();
+echo "Session username is:" . $_SESSION['curUser'];
+
+$curUser = '-1';
+if (isset($_SESSION['curUser'])) {
+	$curUser = $_SESSION["curUser"];
+}
+
+?>
 
 <html>
     <head>
@@ -27,13 +37,6 @@
         </div>
 
         <div id="friends-container" class="d-flex container main-container">
-          <!--  <div class="m-4 artist box">Text box</div>
-            <div class="m-4 artist box">Text box</div>
-            <div class="m-4 artist box">Text box</div>
-            <div class="m-4 artist box">Text box</div>
-            <div class="m-4 artist box">Text box</div>
-            <div class="m-4 artist box">Text box</div>
-            <div class="m-4 artist box">Text box</div> -->
         </div>
 
 <div id="dom-target"  style="display: none;" > 
@@ -47,7 +50,7 @@
 		die('Could not connect: ' . mysql_error());
 	}
 		
-	$query = "SELECT f.FriendUsername FROM Friends f WHERE f.Username = 'HoneySwallows'";
+	$query = "SELECT f.FriendUsername FROM Friends f WHERE f.Username = '$curUser'";
 	
 	
 
@@ -68,9 +71,6 @@
 		$cs = implode("," , $a);
 		echo htmlspecialchars($cs); 
 		echo "<script>insertFriend()</script>";
-		
-
-//		echo "<script> insertSong(json_encode($a[0]), 'a thing','another thing' , 'more things')</script>";
 	}
 
 	mysqli_free_result($result);

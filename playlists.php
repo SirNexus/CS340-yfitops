@@ -2,6 +2,11 @@
 session_start();
 echo "Session username is:" . $_SESSION['curUser'];
 
+$curUser = '-1';
+if (isset($_SESSION['curUser'])) {
+	$curUser = $_SESSION["curUser"];
+}
+
 ?>
 <html>
     <head>
@@ -31,13 +36,6 @@ echo "Session username is:" . $_SESSION['curUser'];
         </div>
 
         <div id="playlist-container" class="d-flex container main-container">
-        <!--    <div class="m-4 playlist box">Text box</div>
-            <div class="m-4 playlist box">Text box</div>
-            <div class="m-4 playlist box">Text box</div>
-            <div class="m-4 playlist box">Text box</div>
-            <div class="m-4 playlist box">Text box</div>
-            <div class="m-4 playlist box">Text box</div>
-            <div class="m-4 playlist box">Text box</div> -->
 		</div>
 
 <div id="dom-target"  style="display: none;" > 
@@ -51,7 +49,7 @@ echo "Session username is:" . $_SESSION['curUser'];
 		die('Could not connect: ' . mysql_error());
 	}
 		
-	$query = "SELECT P.Title FROM Playlist P WHERE P.Username = 'grockidile'";
+	$query = "SELECT P.Title FROM Playlist P WHERE P.Username = '$curUser'";
 	
 	
 
@@ -72,9 +70,6 @@ echo "Session username is:" . $_SESSION['curUser'];
 		$cs = implode("," , $a);
 		echo htmlspecialchars($cs); 
 		echo "<script>insertPlaylist()</script>";
-		
-
-//		echo "<script> insertSong(json_encode($a[0]), 'a thing','another thing' , 'more things')</script>";
 	}
 
 	mysqli_free_result($result);

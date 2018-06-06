@@ -2,6 +2,11 @@
 session_start();
 echo "Session username is:" . $_SESSION['curUser'];
 
+$curUser = '-1';
+if (isset($_SESSION['curUser'])) {
+	$curUser = $_SESSION["curUser"];
+}
+
 ?>
 
 <html>
@@ -39,20 +44,6 @@ echo "Session username is:" . $_SESSION['curUser'];
                 <div class="song-album">Album</div>
                 <div class="song-genre">Genre</div>
             </div>
-<!--
-			<div class="song">
-                <div class="song-title">Test title</div>
-                <div class="song-artist">Test artist</div>
-                <div class="song-album">Test album</div>
-                <div class="song-genre">Test genre</div>
-            </div>
-            <div class="song">
-                <div class="song-title">Test title</div>
-                <div class="song-artist">Test artist</div>
-                <div class="song-album">Test album</div>
-                <div class="song-genre">Test genre</div>
-			</div>
--->
         </div>
     </body>
 
@@ -70,7 +61,7 @@ echo "Session username is:" . $_SESSION['curUser'];
 		die('Could not connect: ' . mysql_error());
 	}
 		
-	$query = "SELECT S.SongName, S.Album, S.Artist, S.Genre FROM Song S, Owns O WHERE O.SongID = S.SongID and O.Username ='grockidile'";
+	$query = "SELECT S.SongName, S.Album, S.Artist, S.Genre FROM Song S, Owns O WHERE O.SongID = S.SongID and O.Username ='$curUser'";
 	
 	
 
@@ -93,7 +84,6 @@ echo "Session username is:" . $_SESSION['curUser'];
 		echo "<script>insertSong()</script>";
 		
 
-//		echo "<script> insertSong(json_encode($a[0]), 'a thing','another thing' , 'more things')</script>";
 	}
 
 	mysqli_free_result($result);

@@ -23,14 +23,8 @@
 		$sql = "SELECT password FROM Users WHERE username='$username'";
 		$r = mysqli_query($conn, $sql);
 		if($row = mysqli_fetch_assoc($r)){
-		//	$salt = $row['salt'];
-		//	$saltSql = "SELECT * FROM Users WHERE username='$username' AND password=MD5('$password$salt')";
-		//	$final = mysqli_query($conn , $saltSql);
-			
-		//	if($finalrow = mysqli_fetch_assoc($final)){
 			return true;
-			}
-	//	}
+		}
 			return false;
 	}
  	
@@ -40,13 +34,9 @@
 	}
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-// Escape user inputs for security
 		$username = mysqli_real_escape_string($conn, $_POST['username']);
 		$password = mysqli_real_escape_string($conn, $_POST['password']);
-	//	$salt = mysqli_real_escape_string($conn, $_POST['password']);
 		
-		
-
 		if (login($username, $password)) {
         
             session_start();
@@ -56,8 +46,6 @@
 		}else{	
 			$msg ="<h2>Wrong username or password</h2>";
 		}
-		//	echo "$passIn and $saltIn";
-		// attempt insert query 
 			
 
 }
