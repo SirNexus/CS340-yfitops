@@ -12,7 +12,6 @@ if (isset($_SESSION['curUser'])) {
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
-        <script src="https://sdk.scdn.co/spotify-player.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="script.js"></script>
         <meta charset="UTF-8"> 
@@ -43,20 +42,6 @@ if (isset($_SESSION['curUser'])) {
                 <div class="song-album">Album</div>
                 <div class="song-genre">Genre</div>
             </div>
-<!--
-			<div class="song">
-                <div class="song-title">Test title</div>
-                <div class="song-artist">Test artist</div>
-                <div class="song-album">Test album</div>
-                <div class="song-genre">Test genre</div>
-            </div>
-            <div class="song">
-                <div class="song-title">Test title</div>
-                <div class="song-artist">Test artist</div>
-                <div class="song-album">Test album</div>
-                <div class="song-genre">Test genre</div>
-			</div>
--->
         </div>
     </body>
 
@@ -75,9 +60,7 @@ if (isset($_SESSION['curUser'])) {
 	}
 
 		
-	$query = "SELECT S.SongName, S.Album, S.Artist, S.Genre FROM Song S, Owns O WHERE O.SongID = S.SongID and O.Username = '$curUser'";
-	
-	
+	$query = "SELECT S.SongName, S.Album, S.Artist, S.Genre, S.SongURL FROM Song S, Owns O WHERE O.SongID = S.SongID and O.Username = '$curUser'";
 
 	$result = mysqli_query($conn, $query);
 	

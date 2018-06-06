@@ -1,7 +1,11 @@
-
 <?php
 session_start();
 echo "Session username is:" . $_SESSION['curUser'];
+
+$curUser = '-1';
+if (isset($_SESSION['curUser'])) {
+	$curUser = $_SESSION["curUser"];
+}
 
 ?>
 
@@ -53,7 +57,7 @@ echo "Session username is:" . $_SESSION['curUser'];
 		die('Could not connect: ' . mysql_error());
 	}
 		
-	$query = "SELECT DISTINCT s.Artist, s.ArtistImage FROM Song s, Owns o WHERE o.Username ='HoneySwallows' AND o.SongID = s.SongID";
+	$query = "SELECT DISTINCT s.Artist, s.ArtistImage FROM Song s, Owns o WHERE o.Username ='$curUser' AND o.SongID = s.SongID";
 	
 	
 
@@ -74,9 +78,6 @@ echo "Session username is:" . $_SESSION['curUser'];
 		$cs = implode("," , $a);
 		echo htmlspecialchars($cs); 
 		echo "<script>insertArtistProfile()</script>";
-		
-
-//		echo "<script> insertSong(json_encode($a[0]), 'a thing','another thing' , 'more things')</script>";
 	}
 
 	mysqli_free_result($result);
