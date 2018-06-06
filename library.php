@@ -46,7 +46,7 @@ if (isset($_SESSION['curUser'])) {
             <img id="play-btn" class="play-btn" src="pause.jpeg">
             <img id="exit-player-btn" src="exit.png">
             <div id="player-artist">Test Album</div>
-        </div>
+      </div>
 
 <div id="dom-target"  style="display: none;" > 
 <?php
@@ -58,7 +58,7 @@ if (isset($_SESSION['curUser'])) {
 	if (!$conn) {
 		die('Could not connect: ' . mysql_error());
 	}
-		
+
 	$query = "SELECT s.SongName , s.Album, s.Artist, s.Genre, s.SongURL FROM Song s";
 	
 
