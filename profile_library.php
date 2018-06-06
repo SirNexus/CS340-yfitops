@@ -1,12 +1,11 @@
 <?php
 session_start();
 echo "Session username is:" . $_SESSION['curUser'];
-
 $curUser = '-1';
 if (isset($_SESSION['curUser'])) {
 	$curUser = $_SESSION["curUser"];
 }
-
+		
 ?>
 
 <html>
@@ -59,6 +58,7 @@ if (isset($_SESSION['curUser'])) {
 	if (!$conn) {
 		die('Could not connect: ' . mysql_error());
 	}
+
 		
 	$query = "SELECT S.SongName, S.Album, S.Artist, S.Genre, S.SongURL FROM Song S, Owns O WHERE O.SongID = S.SongID and O.Username = '$curUser'";
 

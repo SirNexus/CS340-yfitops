@@ -9,7 +9,7 @@ $(document).ready(function(){
     });
 
     $(".header-logo").click(function(){
-        window.location.href = "./index.html";
+        window.location.href = "./library.php";
     });
 
     $("#header-signup").click(function(){
