@@ -52,6 +52,8 @@ $(document).ready(function(){
         playSong($(this).children(":first").attr("data-uri"));
         $('#play-song').attr('class', 'show-player');
         $("#play-btn").attr("src", "pause.jpeg");
+        $("#player-title").text($(this).children(":first").text());
+        $("#player-artist").text($(this).children().eq(1).text());
     });
     $("#exit-player-btn").click(function(){
         $('#play-song').addClass('hide-player');
@@ -73,15 +75,51 @@ $(document).ready(function(){
     });
 });
 
-var token = 'BQDCIlLZHviq5anX-deA7Be_SIpGPpWFgM16Kcc4lmgQ0F_2XtM0d8Q4gN_nuIYfb_srnzfEqbRjV68HD3fImml-Ry31nAE7qQ6KZzdDFszV0wIPkxIRJCrQ1n8w3WH5_BGN2L1tPZgIQK1aIivPpmMtGzJCkjxh7M0prA'
+var token = 'BQDOU2PvqfkMfpV-YXux4mWMbEpKkWqpaTBsWx4cjwvux2_OvdhNI-D7rgi0ugqF8KeLvKVa5wCLzkVtBtk4QrgFU2xtDLkoigf6rn4HL43Tpbzz5AMlPEIM-17b3z1Fr87lRLOyznlF9xxYQbmTUbF8rru0ZH0xvtqPhw'
+var play_device_id;
+var device_ready = false;
+var wait_song_uri = "";
 
+window.onSpotifyWebPlaybackSDKReady = () => {
+    const player = new Spotify.Player({
+      name: 'Web Playback SDK Quick Start Player',
+      getOAuthToken: cb => { cb(token); }
+    });
+  
+    // Error handling
+    player.addListener('initialization_error', ({ message }) => { console.error(message); });
+    player.addListener('authentication_error', ({ message }) => { console.error(message); });
+    player.addListener('account_error', ({ message }) => { console.error(message); });
+    player.addListener('playback_error', ({ message }) => { console.error(message); });
+  
+    // Playback status updates
+    player.addListener('player_state_changed', state => { console.log(state); });
+  
+    // Ready
+    player.addListener('ready', ({ device_id }) => {
+      console.log('Ready with Device ID', device_id);
+      play_device_id = device_id;
+      device_ready = true;
+      if (wait_song_uri != ""){
+          playSong(wait_song_uri);
+      }
+    });
+  
+    // Not Ready
+    player.addListener('not_ready', ({ device_id }) => {
+      console.log('Device ID has gone offline', device_id);
+    });
+  
+    // Connect to the player!
+    player.connect();
+  };
+  
 
 function insertSongMainLib() {
     var div = document.getElementById("dom-target");
 	var myData = div.textContent;
 
 	var array = myData.split(",");
-	console.log(array);
 
 	var title = array[0];
 	var album = array[1];
@@ -90,8 +128,6 @@ function insertSongMainLib() {
     var songURL = array[4].substring(0,array[4].indexOf("insert"));
 
 	var lastSong = document.getElementById('songs-container');
-//    var lastSong = $('#songs-container').children().last();
-//	console.log(lastSong);
 
     var node = document.createElement('div');
     node.classList.add('song')
@@ -127,7 +163,6 @@ function insertArtistProfile() {
 	var myData = div.textContent;
 
 	var array = myData.split(",");
-	console.log(array);
 
 	var artist_name = array[0];
 	var image_url = array[1].substring(0,array[1].indexOf("insert"));
@@ -162,7 +197,6 @@ function insertPlaylist() {
 	var myData = div.textContent;
 
 	var array = myData.split(",");
-	console.log(array);
 
 	var playlist = array[0];
 	var playlist = array[0].substring(0,array[0].indexOf("insert"));
@@ -182,21 +216,15 @@ function insertPlaylist() {
 }
 
 function insertFriend() {
-	console.log("here");
     var div = document.getElementById("dom-target");
 	var myData = div.textContent;
 
 	var array = myData.split(",");
-	console.log(array);
 
 	var friend = array[0];
 	var friend = array[0].substring(0,array[0].indexOf("insert"));
-	console.log(friend);
 
 	var elem = document.getElementById('friends-container');
-//  var lastSong = $('#songs-container').children().last();
-//	console.log(lastSong);
-
 
     var node = document.createElement('div');
     node.classList.add("artist");
@@ -253,14 +281,21 @@ function insertSong() {
     lastSong.append(node);
 }
 
-function playSong(URI) {
+function playSong(uri) {
+    
+    if (!device_ready){
+        wait_song_uri = uri;
+        
+        return;
+    }
+    
     $.ajax({
         url: 'https://api.spotify.com/v1/me/player/play',
         type: 'PUT',
         headers: {
             'Authorization': 'Bearer ' + token
         },
-        data: JSON.stringify({"uris": [URI]}),
+        data: JSON.stringify({"uris": [uri]}),
         contentType: "application/json",
         dataType: "json",
         processData: false,
@@ -268,13 +303,33 @@ function playSong(URI) {
             console.log("Success:" + response)
         },
         error: function(error) {
-            console.log("Error:")
-            console.dir(error)
+            if (error["responseText"].includes("No active device found")){
+                $.ajax({
+                    url: 'https://api.spotify.com/v1/me/player',
+                    type: 'PUT',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    },
+                    data: JSON.stringify({"device_ids": [play_device_id]}),
+                    contentType: "application/json",
+                    dataType: "json",
+                    processData: false,
+                    success: function(response) {
+                        console.log("Success:" + response)
+                        playSong(uri)
+                    },
+                    error: function(error) {
+                        console.log("Error:")
+                        console.dir(error)
+                    }
+                });
+            }
+            else console.dir(error);
         }
     });
 };
 
-function pauseSong(URI) {
+function pauseSong(uri) {
     $.ajax({
         url: 'https://api.spotify.com/v1/me/player/pause',
         type: 'PUT',
