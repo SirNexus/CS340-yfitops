@@ -87,8 +87,8 @@ function insertSongMainLib() {
 	var album = array[1];
 	var artist = array[2];
 	var genre = array[3]
-    var songURL = array[4].substring(0,array[4].indexOf("insert"));
-
+  var songURL = array[4].substring(0,array[4].indexOf("insert"));
+  
 	var lastSong = document.getElementById('songs-container');
 //    var lastSong = $('#songs-container').children().last();
 //	console.log(lastSong);
