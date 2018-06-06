@@ -21,30 +21,30 @@ $(document).ready(function(){
     });
 
     $("#playlists-btn").click(function(){
-        window.location.href = "./playlists.html";
+        window.location.href = "./playlists.php";
     });
 
     $("#songs-btn").click(function(){
-        window.location.href = "./profile_library.html";
+        window.location.href = "./profile_library.php";
     });
     
     $("#friends-btn").click(function(){
-        window.location.href = "./friends.html";
+        window.location.href = "./friends.php";
     });
 
     $("#discover-btn").click(function(){
-        window.location.href = "./discover.html";
+        window.location.href = "./discover.php";
     });
 
     $("#header-profile").click(function(){
-        window.location.href = "./profile.html";
+        window.location.href = "./profile.php";
     });
 
     $("#header-logout").click(function(){
-        window.location.href = "./index.html";
+        window.location.href = "./logout.php";
     });
 });
-
+  
 function insertSong(title, artist, album, genre) {
     var lastSong = $('#songs-container').children().last();
 
