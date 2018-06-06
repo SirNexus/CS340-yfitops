@@ -3,6 +3,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <!--  <script type="text/javascript" src="script.js"></script> -->
         <script type="text/javascript" src="script.js"></script>
         <meta charset="UTF-8"> 
     </head>
@@ -53,7 +54,7 @@
             $msg ="<h2>You have logged in</h2>";
             echo "<script type=\"text/javascript\">document.location.href=\"profile.html\";</script>";
 		}else{	
-			$msg ="<h2>Wrong username or passwaord</h2>";
+			$msg ="<h2>Wrong username or passwordd</h2>";
 		}
 		//	echo "$passIn and $saltIn";
 		// attempt insert query 
