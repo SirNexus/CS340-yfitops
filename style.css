@@ -80,6 +80,7 @@ body {
     width:200px;
     height:200px;
     text-align: center;
+	overflow: hidden;
 }
 
 .song {
@@ -122,4 +123,23 @@ body {
 .col-centered{
     margin: 0 auto;
     float: none;
+}
+.artistImg{
+//    margin:auto;
+//    border-radius: 50%;
+    background-color: white;
+//	position: absolute;
+//	clip: rect(0px, 200px, 200px, 0px);
+    width:auto;
+    height:200px;
+//    text-align: center;
+	object-fit:contain;
+}
+
+.artistText{
+	text-center
+}
+.artistBox{
+	border: none;
+	text-align:center
 }
