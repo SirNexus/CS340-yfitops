@@ -36,12 +36,19 @@ if (isset($_SESSION['curUser'])) {
         </div>
 
         <div id="songs-container" class="d-flex container main-container box">
-            <div class="song">
+            <div id="song-header">
                 <div class="song-title">Title</div>
                 <div class="song-artist">Artist</div>
                 <div class="song-album">Album</div>
                 <div class="song-genre">Genre</div>
             </div>
+        </div>
+
+        <div id="play-song" class="hide-player">
+            <div id="player-title">Test Title</div>
+            <img id="play-btn" class="play-btn" src="pause.jpeg">
+            <img id="exit-player-btn" src="exit.png">
+            <div id="player-artist">Test Album</div>
         </div>
     </body>
 
@@ -52,8 +59,6 @@ if (isset($_SESSION['curUser'])) {
 <?php
 	include 'connectvars.php'; 
 
-
-	
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	if (!$conn) {
 		die('Could not connect: ' . mysql_error());
@@ -81,7 +86,6 @@ if (isset($_SESSION['curUser'])) {
 		echo "<script>insertSong()</script>";
 		
 
-//		echo "<script> insertSong(json_encode($a[0]), 'a thing','another thing' , 'more things')</script>";
 	}
 
 	mysqli_free_result($result);

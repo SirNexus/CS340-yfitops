@@ -49,9 +49,31 @@ $(document).ready(function(){
     })
 
     $(".song").click(function(){
-        console.log($(this));
+        playSong($(this).children(":first").attr("data-uri"));
+        $('#play-song').attr('class', 'show-player');
+        $("#play-btn").attr("src", "pause.jpeg");
+    });
+    $("#exit-player-btn").click(function(){
+        $('#play-song').addClass('hide-player');
+        if ($('#play-btn').attr("src") === "pause.jpeg"){
+            $('#play-btn').attr("src", "play.png");
+            pauseSong();
+        }
+    });
+
+    $("#play-btn").click(function(){
+        if ($(this).attr("src") === "pause.jpeg"){
+            $(this).attr("src", "play.png");
+            pauseSong();
+        }
+        else if ($(this).attr("src") === "play.png"){
+            $(this).attr("src", "pause.jpeg");
+            resumeSong();
+        }
     });
 });
+
+var token = 'BQDCIlLZHviq5anX-deA7Be_SIpGPpWFgM16Kcc4lmgQ0F_2XtM0d8Q4gN_nuIYfb_srnzfEqbRjV68HD3fImml-Ry31nAE7qQ6KZzdDFszV0wIPkxIRJCrQ1n8w3WH5_BGN2L1tPZgIQK1aIivPpmMtGzJCkjxh7M0prA'
 
 
 function insertArtistProfile() {
@@ -160,9 +182,49 @@ function playSong(URI) {
         url: 'https://api.spotify.com/v1/me/player/play',
         type: 'PUT',
         headers: {
-            'Authorization': 'Bearer ' + 'BQDsyLQo_cC6NsEzQ4LSYPJLvac_dqLHL3v0mndgJksQwb9BxARxUYyk7haOL8CkZjDIxAdbRTwWZjP9OK4gRqD24Gnkv1sbar_yzmy9rFt_AN7dHpMghxTDH-MIfucP0T2S-jXsQMGc3UjhIrRH3A3Ydtia2a7IngQPZA'
+            'Authorization': 'Bearer ' + token
         },
         data: JSON.stringify({"uris": [URI]}),
+        contentType: "application/json",
+        dataType: "json",
+        processData: false,
+        success: function(response) {
+            console.log("Success:" + response)
+        },
+        error: function(error) {
+            console.log("Error:")
+            console.dir(error)
+        }
+    });
+};
+
+function pauseSong(URI) {
+    $.ajax({
+        url: 'https://api.spotify.com/v1/me/player/pause',
+        type: 'PUT',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
+        contentType: "application/json",
+        dataType: "json",
+        processData: false,
+        success: function(response) {
+            console.log("Success:" + response)
+        },
+        error: function(error) {
+            console.log("Error:")
+            console.dir(error)
+        }
+    });
+}
+
+function resumeSong() {
+    $.ajax({
+        url: 'https://api.spotify.com/v1/me/player/play',
+        type: 'PUT',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         contentType: "application/json",
         dataType: "json",
         processData: false,

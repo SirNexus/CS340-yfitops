@@ -45,6 +45,13 @@ if (isset($_SESSION['curUser'])) {
                 <div class="song-genre">Genre</div>
             </div>
         </div>
+
+        <div id="play-song" class="hide-player">
+            <div id="player-title">Test Title</div>
+            <img id="play-btn" class="play-btn" src="pause.jpeg">
+            <img id="exit-player-btn" src="exit.png">
+            <div id="player-artist">Test Album</div>
+        </div>
     </body>
 
 
