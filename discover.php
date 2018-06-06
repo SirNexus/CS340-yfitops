@@ -1,6 +1,5 @@
 <?php
 session_start();
-echo "Session username is:" . $_SESSION['curUser'];
 $curUser = '-1';
 if (isset($_SESSION['curUser'])) {
 	$curUser = $_SESSION["curUser"];
