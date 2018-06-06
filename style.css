@@ -83,6 +83,18 @@ body {
 	overflow: hidden;
 }
 
+.friend {
+    margin:auto;
+    border-radius: 50%;
+    background-color: white;
+    width:200px;
+    height:200px;
+    text-align: center;
+    overflow: hidden;
+    line-height:100px;
+    font-size:30px;
+}
+
 #song-header {
     width: 100%;
     border-bottom: .5px solid #F0F0F0;
@@ -160,6 +172,8 @@ body {
     width:200px;
     height:200px;
     text-align: center;
+    line-height:100px;
+    font-size:30px
 }
 
 #songs-container {
@@ -197,9 +211,6 @@ body {
 	object-fit:contain;
 }
 
-.artistText{
-	text-center
-}
 .artistBox{
 	border: none;
 	text-align:center

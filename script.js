@@ -73,9 +73,12 @@ $(document).ready(function(){
             resumeSong();
         }
     });
+
+    randomizeColors(".friend");
+    randomizeColors(".playlist");
 });
 
-var token = 'BQDOU2PvqfkMfpV-YXux4mWMbEpKkWqpaTBsWx4cjwvux2_OvdhNI-D7rgi0ugqF8KeLvKVa5wCLzkVtBtk4QrgFU2xtDLkoigf6rn4HL43Tpbzz5AMlPEIM-17b3z1Fr87lRLOyznlF9xxYQbmTUbF8rru0ZH0xvtqPhw'
+var token = 'BQCo4VwMfuU7pvt6RgjGFbC8vazun-m85ivoayfmcYKYGaYCO5SFxUSk3pNG9hw1bQNELsWByZmJKA95ZCBcZ3ysX9jP9EjPs5mnWOdfuAwGiTPvuzCNPqFZiBS-rXAtPXNOJGcmQcxOF14yba9pT0SSbVqs2lruN1vrOA'
 var play_device_id;
 var device_ready = false;
 var wait_song_uri = "";
@@ -227,7 +230,7 @@ function insertFriend() {
 	var elem = document.getElementById('friends-container');
 
     var node = document.createElement('div');
-    node.classList.add("artist");
+    node.classList.add("friend");
     node.classList.add("m-4");
     node.classList.add("box");
     node.innerHTML = friend;
@@ -368,3 +371,16 @@ function resumeSong() {
         }
     });
 };
+
+function randomizeColors(element) {
+    var colors = ['yellow', 'orange', 'pink', 'rgb(114, 114, 250)', 'rgb(1, 214, 1)'];
+    $(element).each(function(){
+        var random_color = colors[Math.floor(Math.random() * colors.length)];
+        $(this).attr("style", "background-color: " + random_color);
+        var index = colors.indexOf(random_color);
+        colors.splice(index, 1);
+        if (colors == null){
+            colors = ['yellow', 'orange', 'gray', 'pink', 'green'];
+        }
+    });
+}
