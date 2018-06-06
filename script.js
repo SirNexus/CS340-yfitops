@@ -78,7 +78,7 @@ $(document).ready(function(){
     randomizeColors(".playlist");
 });
 
-var token = 'BQCo4VwMfuU7pvt6RgjGFbC8vazun-m85ivoayfmcYKYGaYCO5SFxUSk3pNG9hw1bQNELsWByZmJKA95ZCBcZ3ysX9jP9EjPs5mnWOdfuAwGiTPvuzCNPqFZiBS-rXAtPXNOJGcmQcxOF14yba9pT0SSbVqs2lruN1vrOA'
+var token = 'BQDwMTNzWh21882lYHWoAJMwbr6HBBKED-MJrC_tPeeX6ph_h6gtO0-CCBn7RQ2wKcLdehy05XRq1CB78djkK-2jcu4LIAdZ8J7cQzmvNoN8Vm9dDI7eHsFW-TzTnPccdJ8zM7t0kaLgIATqw4XiDxl_rt63nkhlxvjPlw'
 var play_device_id;
 var device_ready = false;
 var wait_song_uri = "";
