@@ -11,7 +11,7 @@ echo "Session username is:" . $_SESSION['curUser'];
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="script.js"></script>
         <meta charset="UTF-8"> 
-    </head>
+	</head>
     <body>
         <div class="header">
             <img class="header-logo" src="yfitops_header.jpg">
@@ -33,6 +33,13 @@ echo "Session username is:" . $_SESSION['curUser'];
 
         <div id="songs-container" class="d-flex container main-container box">
             <div class="song">
+                <div class="song-title">Title</div>
+                <div class="song-artist">Artist</div>
+                <div class="song-album">Album</div>
+                <div class="song-genre">Genre</div>
+            </div>
+<!--
+			<div class="song">
                 <div class="song-title">Test title</div>
                 <div class="song-artist">Test artist</div>
                 <div class="song-album">Test album</div>
@@ -43,13 +50,57 @@ echo "Session username is:" . $_SESSION['curUser'];
                 <div class="song-artist">Test artist</div>
                 <div class="song-album">Test album</div>
                 <div class="song-genre">Test genre</div>
-            </div>
-            <div class="song">
-                <div class="song-title">Test title</div>
-                <div class="song-artist">Test artist</div>
-                <div class="song-album">Test album</div>
-                <div class="song-genre">Test genre</div>
-            </div>
+			</div>
+-->
         </div>
     </body>
+
+
+
+
+<div id="dom-target"  style="display: none;" > 
+<?php
+	include 'connectvars.php'; 
+
+
+	
+	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	if (!$conn) {
+		die('Could not connect: ' . mysql_error());
+	}
+		
+	$query = "SELECT S.SongName, S.Album, S.Artist, S.Genre FROM Song S, Owns O WHERE O.SongID = S.SongID and O.Username ='grockidile'";
+	
+	
+
+	$result = mysqli_query($conn, $query);
+	
+	if (!$result) {
+		die("Query to show fields from table failed");
+	}
+	
+// get number of columns in table	
+	$fields_num = mysqli_num_fields($result);
+	
+	while($row = mysqli_fetch_row($result)) {
+		$a = array();	
+		foreach($row as $cell)		
+			array_push($a, $cell);
+
+		$cs = implode("," , $a);
+		echo htmlspecialchars($cs); 
+		echo "<script>insertSong()</script>";
+		
+
+//		echo "<script> insertSong(json_encode($a[0]), 'a thing','another thing' , 'more things')</script>";
+	}
+
+	mysqli_free_result($result);
+	mysqli_close($conn);
+?>
+
+
+</div>
+
+
 </html>
