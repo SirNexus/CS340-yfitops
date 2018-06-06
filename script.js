@@ -43,6 +43,10 @@ $(document).ready(function(){
     $("#header-logout").click(function(){
         window.location.href = "./logout.php";
     });
+
+    $(".playlist").click(function(){
+        console.log($(this));
+    })
 });
 
 window.onSpotifyWebPlaybackSDKReady = () => {
