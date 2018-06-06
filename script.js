@@ -41,7 +41,7 @@ $(document).ready(function(){
     });
 
     $("#header-logout").click(function(){
-        window.location.href = "./logout.php";
+        window.location.href = "./index.html";
     });
 
     $(".playlist").click(function(){
@@ -54,6 +54,50 @@ $(document).ready(function(){
 });
 
 
+function insertSongMainLib() {
+    var div = document.getElementById("dom-target");
+	var myData = div.textContent;
+
+	var array = myData.split(",");
+	console.log(array);
+
+	var title = array[0];
+	var album = array[1];
+	var artist = array[2];
+	var genre = array[3].substring(0,array[3].indexOf("insert"));
+
+	var lastSong = document.getElementById('songs-container');
+//    var lastSong = $('#songs-container').children().last();
+//	console.log(lastSong);
+
+    var node = document.createElement('div');
+    node.classList.add('song')
+
+    var attribute = document.createElement('div');
+    attribute.classList.add("song-title");
+    attribute.innerHTML = title;
+    node.appendChild(attribute);
+
+    attribute = document.createElement('div');
+    attribute.classList.add("song-artist");
+    attribute.innerHTML = artist;
+    node.appendChild(attribute);
+
+    attribute = document.createElement('div');
+    attribute.classList.add("song-album");
+    attribute.innerHTML = album;
+    node.appendChild(attribute);
+
+    attribute = document.createElement('div');
+    attribute.classList.add("song-genre");
+    attribute.innerHTML = genre;
+    node.appendChild(attribute);
+
+	div.innerHTML = "";
+    
+	lastSong.append(node);
+
+}
 function insertArtistProfile() {
     var div = document.getElementById("dom-target");
 	var myData = div.textContent;
@@ -112,6 +156,36 @@ function insertPlaylist() {
 	elem.append(node);
 
 }
+
+function insertFriend() {
+	console.log("here");
+    var div = document.getElementById("dom-target");
+	var myData = div.textContent;
+
+	var array = myData.split(",");
+	console.log(array);
+
+	var friend = array[0];
+	var friend = array[0].substring(0,array[0].indexOf("insert"));
+	console.log(friend);
+
+	var elem = document.getElementById('friends-container');
+//  var lastSong = $('#songs-container').children().last();
+//	console.log(lastSong);
+
+
+    var node = document.createElement('div');
+    node.classList.add("artist");
+    node.classList.add("m-4");
+    node.classList.add("box");
+    node.innerHTML = friend;
+
+	div.innerHTML = "";
+    
+	elem.append(node);
+
+}
+
 
 function insertSong() {
     var div = document.getElementById("dom-target");
