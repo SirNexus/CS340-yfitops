@@ -25,7 +25,7 @@ $(document).ready(function(){
     });
 
     $("#songs-btn").click(function(){
-        window.location.href = "./profile_library.html";
+        window.location.href = "./profile_library.php";
     });
     
     $("#friends-btn").click(function(){
@@ -45,8 +45,24 @@ $(document).ready(function(){
     });
 });
 
-function insertSong(title, artist, album, genre) {
-    var lastSong = $('#songs-container').children().last();
+function insertSong() {
+	console.log("here");
+    var div = document.getElementById("dom-target");
+	var myData = div.textContent;
+	
+
+
+	var array = myData.split(",");
+	console.log(array);
+
+	var title = array[0];
+	var album = array[1];
+	var artist = array[2];
+	var genre = array[3];
+
+	var lastSong = document.getElementById('songs-container');
+//    var lastSong = $('#songs-container').children().last();
+//	console.log(lastSong);
 
     var node = document.createElement('div');
     node.classList.add('song')
@@ -71,5 +87,8 @@ function insertSong(title, artist, album, genre) {
     attribute.innerHTML = artist;
     node.appendChild(attribute);
 
-    lastSong.append(node);
+	div.innerHTML = "";
+    
+	lastSong.append(node);
+
 }
