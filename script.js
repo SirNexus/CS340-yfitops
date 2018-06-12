@@ -45,7 +45,7 @@ $(document).ready(function(){
     });
 
     $(".playlist").click(function(){
-        console.log($(this));
+        window.location.href = "./single_playlist.php?playlist=" +  $(this).text().trim();
     })
 
     $(".song").click(function(){
@@ -55,6 +55,7 @@ $(document).ready(function(){
         $("#player-title").text($(this).children(":first").text());
         $("#player-artist").text($(this).children().eq(1).text());
     });
+
     $("#exit-player-btn").click(function(){
         $('#play-song').addClass('hide-player');
         if ($('#play-btn').attr("src") === "pause.jpeg"){
