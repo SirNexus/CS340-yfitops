@@ -40,8 +40,6 @@ if (isset($_SESSION['curUser'])) {
 <div id="dom-target"  style="display: none;" > 
 <?php
 	include 'connectvars.php'; 
-
-
 	
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	if (!$conn) {

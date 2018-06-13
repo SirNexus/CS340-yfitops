@@ -83,9 +83,87 @@ body {
 	overflow: hidden;
 }
 
+.friend {
+    margin:auto;
+    border-radius: 50%;
+    background-color: white;
+    width:200px;
+    height:200px;
+    text-align: center;
+    overflow: hidden;
+    line-height:100px;
+    font-size:30px;
+}
+
+#song-header {
+    width: 100%;
+    border-bottom: .5px solid #F0F0F0;
+}
+
 .song {
     width: 100%;
     border-bottom: .5px solid #F0F0F0;
+}
+
+.song:hover {
+    cursor:pointer;
+    color: orange;
+}
+
+#play-song {
+    position: fixed;
+    background-color: white;
+    bottom: 0px;
+    width: 100%;
+    border-top: 3px solid rgb(60, 60, 78);
+    transition: height 1s;
+}
+
+.show-player {
+    height:100px
+}
+
+.hide-player {
+    height: 0px;
+}
+
+#player-title{
+    font-size: 40px;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+}
+
+#player-artist{
+    font-size: 40px;
+    position: absolute;
+    top: 20%;
+    right: 20%;
+}
+
+.play-btn {
+    position: absolute;
+    height:95%;
+    width: auto;
+    margin-left: 45%;
+}
+
+.play-btn:hover {
+    cursor: pointer;
+}
+
+#play-btn-container{
+    width: 150px;
+}
+
+#exit-player-btn{
+    position: absolute;
+    float: right;
+    width: 15px;
+    height: auto;
+    top: 5px;
+    right: 5px;
+
 }
 
 .playlist {
@@ -94,6 +172,12 @@ body {
     width:200px;
     height:200px;
     text-align: center;
+    line-height:100px;
+    font-size:30px
+}
+
+.playlist:hover {
+    cursor: pointer;
 }
 
 #songs-container {
@@ -125,20 +209,12 @@ body {
     float: none;
 }
 .artistImg{
-//    margin:auto;
-//    border-radius: 50%;
     background-color: white;
-//	position: absolute;
-//	clip: rect(0px, 200px, 200px, 0px);
     width:auto;
     height:200px;
-//    text-align: center;
 	object-fit:contain;
 }
 
-.artistText{
-	text-center
-}
 .artistBox{
 	border: none;
 	text-align:center
