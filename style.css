@@ -176,6 +176,10 @@ body {
     font-size:30px
 }
 
+.playlist:hover {
+    cursor: pointer;
+}
+
 #songs-container {
     background-color: white;  
 }
