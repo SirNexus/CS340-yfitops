@@ -27,7 +27,7 @@ $(document).ready(function(){
     $("#songs-btn").click(function(){
         window.location.href = "./profile_library.php";
     });
-    
+
     $("#friends-btn").click(function(){
         window.location.href = "./friends.php";
     });
@@ -46,6 +46,10 @@ $(document).ready(function(){
 
     $(".playlist").click(function(){
         window.location.href = "./single_playlist.php?playlist=" +  $(this).text().trim();
+    })
+
+    $(".friend").click(function(){
+        window.location.href = "./view_friend.php?friend=" +  $(this).text().trim();
     })
 
     $(".song").click(function(){
@@ -89,16 +93,16 @@ window.onSpotifyWebPlaybackSDKReady = () => {
       name: 'Web Playback SDK Quick Start Player',
       getOAuthToken: cb => { cb(token); }
     });
-  
+
     // Error handling
     player.addListener('initialization_error', ({ message }) => { console.error(message); });
     player.addListener('authentication_error', ({ message }) => { console.error(message); });
     player.addListener('account_error', ({ message }) => { console.error(message); });
     player.addListener('playback_error', ({ message }) => { console.error(message); });
-  
+
     // Playback status updates
     player.addListener('player_state_changed', state => { console.log(state); });
-  
+
     // Ready
     player.addListener('ready', ({ device_id }) => {
       console.log('Ready with Device ID', device_id);
@@ -108,16 +112,16 @@ window.onSpotifyWebPlaybackSDKReady = () => {
           playSong(wait_song_uri);
       }
     });
-  
+
     // Not Ready
     player.addListener('not_ready', ({ device_id }) => {
       console.log('Device ID has gone offline', device_id);
     });
-  
+
     // Connect to the player!
     player.connect();
   };
-  
+
 
 function insertSongMainLib() {
     var div = document.getElementById("dom-target");
@@ -130,7 +134,7 @@ function insertSongMainLib() {
 	var artist = array[2];
 	var genre = array[3]
   var songURL = array[4].substring(0,array[4].indexOf("insert"));
-  
+
 	var lastSong = document.getElementById('songs-container');
 
     var node = document.createElement('div');
@@ -138,7 +142,7 @@ function insertSongMainLib() {
 
     var attribute = document.createElement('div');
     attribute.classList.add("song-title");
-    attribute.setAttribute("data-uri", songURL);    
+    attribute.setAttribute("data-uri", songURL);
     attribute.innerHTML = title;
     node.appendChild(attribute);
 
@@ -158,7 +162,7 @@ function insertSongMainLib() {
     node.appendChild(attribute);
 
 	div.innerHTML = "";
-    
+
 	lastSong.append(node);
 
 }
@@ -176,7 +180,7 @@ function insertArtistProfile() {
     var node = document.createElement('div');
 	node.classList.add("m-4");
     node.classList.add("artistBox");
-    
+
 	var circle = document.createElement('div');
 	circle.classList.add("artist");
 	node.appendChild(circle);
@@ -191,7 +195,7 @@ function insertArtistProfile() {
 	node.appendChild(text);
 
 	div.innerHTML = "";
-    
+
 	elem.append(node);
 
 
@@ -214,7 +218,7 @@ function insertPlaylist() {
     node.innerHTML = playlist;
 
 	div.innerHTML = "";
-    
+
 	elem.append(node);
 
 }
@@ -237,7 +241,7 @@ function insertFriend() {
     node.innerHTML = friend;
 
 	div.innerHTML = "";
-    
+
 	elem.append(node);
 
 }
@@ -281,18 +285,18 @@ function insertSong() {
     node.appendChild(attribute);
 
 	div.innerHTML = "";
-    
+
     lastSong.append(node);
 }
 
 function playSong(uri) {
-    
+
     if (!device_ready){
         wait_song_uri = uri;
-        
+
         return;
     }
-    
+
     $.ajax({
         url: 'https://api.spotify.com/v1/me/player/play',
         type: 'PUT',

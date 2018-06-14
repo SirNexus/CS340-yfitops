@@ -95,6 +95,10 @@ body {
     font-size:30px;
 }
 
+.friend:hover {
+    cursor: pointer;
+}
+
 #song-header {
     width: 100%;
     border-bottom: .5px solid #F0F0F0;
@@ -181,7 +185,7 @@ body {
 }
 
 #songs-container {
-    background-color: white;  
+    background-color: white;
 }
 
 .song-title {
