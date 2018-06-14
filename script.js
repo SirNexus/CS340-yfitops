@@ -122,6 +122,49 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     player.connect();
   };
 
+function insertSongDiscover() {
+    var div = document.getElementById("dom-target");
+	var myData = div.textContent;
+
+	var array = myData.split(",");
+
+	var title = array[0];
+	var album = array[2];
+	var artist = array[1];
+	var genre = array[3]
+  	var songURL = array[4].substring(0,array[4].indexOf("insert"));
+
+	var lastSong = document.getElementById('songs-container');
+
+    var node = document.createElement('div');
+    node.classList.add('song')
+
+    var attribute = document.createElement('div');
+    attribute.classList.add("song-title");
+    attribute.setAttribute("data-uri", songURL);
+    attribute.innerHTML = title;
+    node.appendChild(attribute);
+
+    attribute = document.createElement('div');
+    attribute.classList.add("song-artist");
+    attribute.innerHTML = artist;
+    node.appendChild(attribute);
+
+    attribute = document.createElement('div');
+    attribute.classList.add("song-album");
+    attribute.innerHTML = album;
+    node.appendChild(attribute);
+
+    attribute = document.createElement('div');
+    attribute.classList.add("song-genre");
+    attribute.innerHTML = genre;
+    node.appendChild(attribute);
+
+	div.innerHTML = "";
+
+	lastSong.append(node);
+
+}
 
 function insertSongMainLib() {
     var div = document.getElementById("dom-target");
