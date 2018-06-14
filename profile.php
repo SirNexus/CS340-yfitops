@@ -5,6 +5,9 @@ $curUser = '-1';
 if (isset($_SESSION['curUser'])) {
 	$curUser = $_SESSION["curUser"];
 }
+else {
+    echo "<script type=\"text/javascript\">document.location.href=\"logout.php\";</script>";
+}
 
 ?>
 
