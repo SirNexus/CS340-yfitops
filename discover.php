@@ -1,6 +1,5 @@
 <?php
 session_start();
-echo "Session username is:" . $_SESSION['curUser'];
 $curUser = '-1';
 if (isset($_SESSION['curUser'])) {
 	$curUser = $_SESSION["curUser"];
@@ -54,6 +53,13 @@ if (isset($_SESSION['curUser'])) {
                 <div class="song-album">Test album</div>
                 <div class="song-genre">Test genre</div>
             </div>
+        </div>
+
+        <div id="play-song" class="hide-player">
+            <div id="player-title">Test Title</div>
+            <img id="play-btn" class="play-btn" src="pause.jpeg">
+            <img id="exit-player-btn" src="exit.png">
+            <div id="player-artist">Test Album</div>
         </div>
     </body>
 </html>

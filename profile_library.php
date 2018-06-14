@@ -1,6 +1,5 @@
 <?php
 session_start();
-echo "Session username is:" . $_SESSION['curUser'];
 $curUser = '-1';
 if (isset($_SESSION['curUser'])) {
 	$curUser = $_SESSION["curUser"];
@@ -12,6 +11,7 @@ if (isset($_SESSION['curUser'])) {
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
+        <script src="https://sdk.scdn.co/spotify-player.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="script.js"></script>
         <meta charset="UTF-8"> 
@@ -36,12 +36,19 @@ if (isset($_SESSION['curUser'])) {
         </div>
 
         <div id="songs-container" class="d-flex container main-container box">
-            <div class="song">
+            <div id="song-header">
                 <div class="song-title">Title</div>
                 <div class="song-artist">Artist</div>
                 <div class="song-album">Album</div>
                 <div class="song-genre">Genre</div>
             </div>
+        </div>
+
+        <div id="play-song" class="hide-player">
+            <div id="player-title">Test Title</div>
+            <img id="play-btn" class="play-btn" src="pause.jpeg">
+            <img id="exit-player-btn" src="exit.png">
+            <div id="player-artist">Test Artist</div>
         </div>
     </body>
 
@@ -52,8 +59,6 @@ if (isset($_SESSION['curUser'])) {
 <?php
 	include 'connectvars.php'; 
 
-
-	
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	if (!$conn) {
 		die('Could not connect: ' . mysql_error());
@@ -81,7 +86,6 @@ if (isset($_SESSION['curUser'])) {
 		echo "<script>insertSong()</script>";
 		
 
-//		echo "<script> insertSong(json_encode($a[0]), 'a thing','another thing' , 'more things')</script>";
 	}
 
 	mysqli_free_result($result);

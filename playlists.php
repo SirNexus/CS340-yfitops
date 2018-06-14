@@ -1,6 +1,5 @@
 <?php
 session_start();
-echo "Session username is:" . $_SESSION['curUser'];
 
 $curUser = '-1';
 if (isset($_SESSION['curUser'])) {
@@ -41,8 +40,6 @@ if (isset($_SESSION['curUser'])) {
 <div id="dom-target"  style="display: none;" > 
 <?php
 	include 'connectvars.php'; 
-
-
 	
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	if (!$conn) {

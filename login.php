@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <html>
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
@@ -38,8 +42,6 @@
 		$password = mysqli_real_escape_string($conn, $_POST['password']);
 		
 		if (login($username, $password)) {
-        
-            session_start();
             $msg ="<h2>You have logged in</h2>";
             $_SESSION["curUser"] = $username;
             echo "<script type=\"text/javascript\">document.location.href=\"profile.php\";</script>";

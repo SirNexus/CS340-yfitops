@@ -1,12 +1,11 @@
 <?php
 session_start();
-echo "Session username is:" . $_SESSION['curUser'];
-
 $curUser = '-1';
 if (isset($_SESSION['curUser'])) {
 	$curUser = $_SESSION["curUser"];
 }
 
+$playlist = $_GET['playlist'];
 ?>
 
 <html>
@@ -34,36 +33,39 @@ if (isset($_SESSION['curUser'])) {
         </div>
 
         <div class="my-3 container profile-text text-center">
-            Your Songs
+        <?php
+            echo $playlist
+        ?>
         </div>
 
         <div id="songs-container" class="d-flex container main-container box">
-            <div class="song">
+            <div id="song-header">
                 <div class="song-title">Title</div>
                 <div class="song-artist">Artist</div>
                 <div class="song-album">Album</div>
                 <div class="song-genre">Genre</div>
             </div>
         </div>
+
+        <div id="play-song" class="hide-player">
+            <div id="player-title">Test Title</div>
+            <img id="play-btn" class="play-btn" src="pause.jpeg">
+            <img id="exit-player-btn" src="exit.png">
+            <div id="player-artist">Test Artist</div>
+        </div>
     </body>
-
-
-
 
 <div id="dom-target"  style="display: none;" > 
 <?php
 	include 'connectvars.php'; 
 
-
-	
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	if (!$conn) {
 		die('Could not connect: ' . mysql_error());
 	}
+
 		
-	$query = "SELECT S.SongName, S.Album, S.Artist, S.Genre FROM Song S, Owns O WHERE O.SongID = S.SongID and O.Username ='$curUser'";
-	
-	
+    $query = "SELECT S.SongName, S.Album, S.Artist, S.Genre, S.SongURL FROM Song S, Contains C, Playlist P WHERE P.Title = '$playlist' and P.PlaylistID = C.PlaylistID and C.SongID = S.SongID";
 
 	$result = mysqli_query($conn, $query);
 	
