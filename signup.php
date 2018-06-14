@@ -59,7 +59,9 @@ mysqli_close($conn);
                 <h1 class="entry-title"><span>Sign Up</span> </h1>
                 <hr>
                     <form class="form-horizontal" method="post" name="signup" id="signup" enctype="multipart/form-data" >        
-                <div class="form-group">
+				
+
+				<div class="form-group">
                   <label class="control-label col-sm-3">Username <span class="text-danger">*</span></label>
                   <div class="col-md-8 col-sm-9 col-centered">
                       <div class="input-group">
