@@ -23,11 +23,11 @@ session_start();
 
 	
 	function login($username, $password){
-		$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-		$sql = "SELECT password FROM Users WHERE username='$username'";
+        $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+        $sql = "SELECT * FROM Users WHERE Username='$username' AND Password='$password'";
 		$r = mysqli_query($conn, $sql);
-		if($row = mysqli_fetch_assoc($r)){
-			return true;
+		if(mysqli_num_rows($r)> 0){
+            return true;
 		}
 			return false;
 	}
@@ -46,7 +46,7 @@ session_start();
             $_SESSION["curUser"] = $username;
             echo "<script type=\"text/javascript\">document.location.href=\"profile.php\";</script>";
 		}else{	
-			$msg ="<h2>Wrong username or password</h2>";
+            $msg ="<h2>Wrong username or password</h2>";
 		}
 			
 

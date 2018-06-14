@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="script.js"></script>
+        <script type="text/javascript" src="formVerify.js"></script>
         <meta charset="UTF-8"> 
     </head>
     <body>
@@ -51,22 +52,19 @@
 mysqli_close($conn);
 
 ?>
-<form method = "post">
+<form method = "post" id="signup">
         <div id="signup-container" class="my-5 container">
             <div class="row">
             <div class="col-md-8">
               <section>      
                 <h1 class="entry-title"><span>Sign Up</span> </h1>
                 <hr>
-                    <form class="form-horizontal" method="post" name="signup" id="signup" enctype="multipart/form-data" >        
-				
-
-				<div class="form-group">
+                <div class="form-group">
                   <label class="control-label col-sm-3">Username <span class="text-danger">*</span></label>
                   <div class="col-md-8 col-sm-9 col-centered">
                       <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                      <input type="username" class="form-control" name="username" id="username" placeholder="Enter your Username" value="">
+                      <input type="username" class="form-control required" name="username" id="username" placeholder="Enter your Username" value="">
                     </div>
                 </div>
 
@@ -75,7 +73,7 @@ mysqli_close($conn);
                   <div class="col-md-8 col-sm-9 col-centered">
                       <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                      <input type="email" class="form-control" name="email" id="email" placeholder="Enter your Email ID" value="">
+                      <input type="email" class="form-control required" name="email" id="email" placeholder="Enter your Email ID" value="">
                     </div>
                 </div>
                 
@@ -83,7 +81,7 @@ mysqli_close($conn);
                   <label class="control-label col-sm-3">Set Password <span class="text-danger">*</span></label>
                     <div class="input-group col-md-5 col-sm-8 col-centered">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                      <input type="password" class="form-control password-enter" name="password" id="password" placeholder="Choose password (5-15 chars)" value="">
+                      <input type="password" class="form-control password-enter required" name="password" id="password" placeholder="Choose password (5-15 chars)" value="">
  
                   </div>
                 </div>
@@ -92,14 +90,14 @@ mysqli_close($conn);
                   <div class="col-md-5 col-sm-8 col-centered">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                      <input type="password" class="form-control password-enter" name="cpassword" id="cpassword" placeholder="Confirm your password" value="">
+                      <input type="password" class="form-control password-enter required" name="cpassword" id="cpassword" placeholder="Confirm your password" value="">
                     </div>  
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-sm-3">Full Name <span class="text-danger">*</span></label>
                   <div class="col-md-8 col-sm-9 col-centered">
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name here" value="">
+                    <input type="text" class="form-control required" name="name" id="name" placeholder="Enter your Name here" value="">
                   </div>
                 </div>
               </form>

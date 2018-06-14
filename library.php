@@ -5,19 +5,13 @@ $curUser = '-1';
 if (isset($_SESSION['curUser'])) {
 	$curUser = $_SESSION["curUser"];
 }
+else {
+    echo "<script type=\"text/javascript\">document.location.href=\"logout.php\";</script>";
+}
 
 ?>
 
 <html>
-		
-
-
-
-
-
-
-
-
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
