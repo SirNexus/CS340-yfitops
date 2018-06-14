@@ -5,6 +5,9 @@ $curUser = '-1';
 if (isset($_SESSION['curUser'])) {
 	$curUser = $_SESSION["curUser"];
 }
+else {
+    echo "<script type=\"text/javascript\">document.location.href=\"logout.php\";</script>";
+}
 
 ?>
 
@@ -79,9 +82,6 @@ if (isset($_SESSION['curUser'])) {
 		$cs = implode("," , $a);
 		echo htmlspecialchars($cs); 
 		echo "<script>insertSongMainLib()</script>";
-		
-
-//		echo "<script> insertSong(json_encode($a[0]), 'a thing','another thing' , 'more things')</script>";
 	}
 
 	mysqli_free_result($result);

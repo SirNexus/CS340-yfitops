@@ -41,7 +41,7 @@ $(document).ready(function(){
     });
 
     $("#header-logout").click(function(){
-        window.location.href = "./index.html";
+        window.location.href = "./logout.php";
     });
 
     $(".playlist").click(function(){
